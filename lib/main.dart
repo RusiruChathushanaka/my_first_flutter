@@ -9,7 +9,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-
         primarySwatch: Colors.blue,
       ),
       home: MyHomePage(title: 'Flutter Demo Home Page'),
@@ -30,40 +29,85 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _incrementCounter() {
     setState(() {
-
-      _counter=_counter+2;
+      _counter = _counter + 2;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-
-    return Scaffold(
-      appBar: AppBar(
-
-        title: Text(widget.title),
-      ),
-      body: Center(
-
-        child: Column(
-
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ],
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        backgroundColor: Colors.lightBlueAccent,
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              DrawerHeader(
+                child: Text("Drawer Header"),
+                decoration: BoxDecoration(color: Colors.purple),
+              ),
+              ListTile(
+                title: Text("item 1"),
+                leading: Icon(Icons.print),
+                onTap: () {},
+              ),
+              ListTile(
+                title: Text("Back"),
+                leading: Icon(Icons.arrow_back),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
+        appBar: AppBar(
+          bottom: TabBar(
+            tabs: <Widget>[
+              Tab(
+                icon: Icon(Icons.directions_car),
+              ),
+              Tab(
+                icon: Icon(Icons.directions_bike),
+              ),
+              Tab(
+                icon: Icon(Icons.directions_bus),
+              )
+            ],
+          ),
+          title: Text(widget.title),
+          backgroundColor: Colors.green,
+        ),
+        body:
+//        Center(
+//          child:
+//          Column(
+//            mainAxisAlignment: MainAxisAlignment.center,
+//            children: <Widget>[
+//              Text(
+//                'You have pushed the button this many times:',
+//              ),
+//              Text(
+//                '$_counter',
+//                style: Theme.of(context).textTheme.display1,
+//              ),
+              TabBarView(
+                children: <Widget>[
+                  Center(child: Text("Hello World")),
+                  Icon(Icons.directions_bike),
+                  Icon(Icons.directions_bus),
+                ],
+              ),
+//            ],
+          ),
+        );
+//        floatingActionButton: FloatingActionButton(
+//          onPressed: _incrementCounter,
+//          tooltip: 'Increment',
+//          child: Icon(Icons.add),
+//        ), // This trailing comma makes auto-formatting nicer for build methods.
+
+
   }
 }
