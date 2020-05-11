@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:flare_splash_screen/flare_splash_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -8,10 +10,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home:
+//      SplashScreen.navigate(
+//        name: 'intro.flr',
+//        next: (context) => MyHomePage(title: 'Flutter Demo Home Page'),
+//        until: () => Future.delayed(Duration(seconds: 5)),
+//        startAnimation: '1',
+//      ),
+
+      MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
@@ -38,26 +49,45 @@ class _MyHomePageState extends State<MyHomePage> {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        backgroundColor: Colors.lightBlueAccent,
+        backgroundColor: Colors.green,
+
+        bottomNavigationBar: CurvedNavigationBar(
+          backgroundColor: Colors.green,
+          items: <Widget>[
+            Icon(Icons.add, size: 30),
+            Icon(Icons.list, size: 30),
+            Icon(Icons.compare_arrows, size: 30),
+            Icon(Icons.account_circle,size: 30),
+          ],
+          onTap: (index) {
+            //Handle button tap
+          },
+        ),
+
+
         drawer: Drawer(
           child: ListView(
             padding: EdgeInsets.zero,
             children: <Widget>[
               DrawerHeader(
                 child: Text("Drawer Header"),
-                decoration: BoxDecoration(color: Colors.purple),
+                decoration: BoxDecoration(color: Colors.deepPurple),
               ),
-              ListTile(
-                title: Text("item 1"),
-                leading: Icon(Icons.print),
-                onTap: () {},
-              ),
-              ListTile(
-                title: Text("Back"),
-                leading: Icon(Icons.arrow_back),
-                onTap: () {
-                  Navigator.pop(context);
-                },
+              Column(
+                children: <Widget>[
+                  ListTile(
+                    title: Text("item 1"),
+                    leading: Icon(Icons.print),
+                    onTap: () {},
+                  ),
+                  ListTile(
+                    title: Text("Back"),
+                    leading: Icon(Icons.arrow_back),
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                ],
               ),
             ],
           ),
@@ -77,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
           title: Text(widget.title),
-          backgroundColor: Colors.green,
+          backgroundColor: Colors.deepPurple,
         ),
         body:
 //        Center(
@@ -92,22 +122,20 @@ class _MyHomePageState extends State<MyHomePage> {
 //                '$_counter',
 //                style: Theme.of(context).textTheme.display1,
 //              ),
-              TabBarView(
-                children: <Widget>[
-                  Center(child: Text("Hello World")),
-                  Icon(Icons.directions_bike),
-                  Icon(Icons.directions_bus),
-                ],
-              ),
+            TabBarView(
+          children: <Widget>[
+            Center(child: Text("Hello World")),
+            Icon(Icons.directions_bike),
+            Icon(Icons.directions_bus),
+          ],
+        ),
 //            ],
-          ),
-        );
+      ),
+    );
 //        floatingActionButton: FloatingActionButton(
 //          onPressed: _incrementCounter,
 //          tooltip: 'Increment',
 //          child: Icon(Icons.add),
 //        ), // This trailing comma makes auto-formatting nicer for build methods.
-
-
   }
 }
