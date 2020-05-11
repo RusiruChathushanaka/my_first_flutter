@@ -37,8 +37,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  List<Color> _colors = [Colors.deepPurple, Colors.purple];
-  List<Color> _colors2 = [Colors.green, Colors.lightGreen];
+  List<Color> _colors = [Colors.deepPurple.shade900, Colors.deepPurple.shade500];
+  List<Color> _colors2 = [Colors.blue.shade900, Colors.blue.shade800];
 
   void _incrementCounter() {
     setState(() {
