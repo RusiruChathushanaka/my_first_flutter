@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
 //        startAnimation: '1',
 //      ),
 
-      MyHomePage(title: 'Flutter Demo Home Page'),
+          MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
@@ -37,6 +37,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  List<Color> _colors = [Colors.deepPurple, Colors.purple];
+  List<Color> _colors2 = [Colors.green, Colors.lightGreen];
 
   void _incrementCounter() {
     setState(() {
@@ -57,13 +59,12 @@ class _MyHomePageState extends State<MyHomePage> {
             Icon(Icons.add, size: 30),
             Icon(Icons.list, size: 30),
             Icon(Icons.compare_arrows, size: 30),
-            Icon(Icons.account_circle,size: 30),
+            Icon(Icons.account_circle, size: 30),
           ],
           onTap: (index) {
             //Handle button tap
           },
         ),
-
 
         drawer: Drawer(
           child: ListView(
@@ -71,7 +72,9 @@ class _MyHomePageState extends State<MyHomePage> {
             children: <Widget>[
               DrawerHeader(
                 child: Text("Drawer Header"),
-                decoration: BoxDecoration(color: Colors.deepPurple),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(colors: _colors),
+                ),
               ),
               Column(
                 children: <Widget>[
@@ -122,12 +125,17 @@ class _MyHomePageState extends State<MyHomePage> {
 //                '$_counter',
 //                style: Theme.of(context).textTheme.display1,
 //              ),
-            TabBarView(
-          children: <Widget>[
-            Center(child: Text("Hello World")),
-            Icon(Icons.directions_bike),
-            Icon(Icons.directions_bus),
-          ],
+            Container(
+          decoration: new BoxDecoration(
+            gradient: new LinearGradient(colors: _colors2),
+          ),
+          child: TabBarView(
+            children: <Widget>[
+              Center(child: Text("Hello World")),
+              Icon(Icons.directions_bike),
+              Icon(Icons.directions_bus),
+            ],
+          ),
         ),
 //            ],
       ),
